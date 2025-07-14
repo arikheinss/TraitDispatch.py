@@ -7,6 +7,10 @@ class Trait():
     def __init__(self,names, extends = (), fallbacks = {}):
         all_names = set(names)
         fallbacks = copy(fallbacks)
+        # TODO
+        # If we track not just the names but also the origin of all methods
+        # (like in a {name: originaltrait} dict) we can allow diamond-shaped 
+        # inheritance, which right now does not work due to clashing names
         for trait in extends:
             if not all_names.isdisjoint(trait.functions):
                 raise Exception("Parent traits not disjoint")
